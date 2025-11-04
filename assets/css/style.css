@@ -674,6 +674,70 @@ section {
 
 /* Responsive para badges */
 @media (max-width: 768px) {
+
+    .section-title {
+    position: static !important;        /* desativa qualquer left/transform do desktop só no mobile */
+    display: block;
+    text-align: center;
+    margin: 0 auto 1rem;
+    padding: 0 16px;                    /* respiro lateral */
+    max-width: calc(100% - 32px);       /* evita ultrapassar a tela */
+    font-size: clamp(1.6rem, 7vw, 2.2rem); /* tipografia fluida sem estourar */
+    line-height: 1.15;
+    white-space: normal;                /* permite quebrar linha */
+    overflow: visible;
+    word-break: normal;
+    overflow-wrap: anywhere;            /* quebra palavras longas se necessário */
+    hyphens: auto;
+  }
+
+  /* Sublinhado centrado visualmente (sem position absoluta) */
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 88px;                        /* levemente menor que no desktop */
+    height: 4px;
+    margin: 10px auto 0;                /* centraliza pelo margin auto */
+    background: var(--gradient-primary);
+    border-radius: 2px;
+    position: static !important;        /* garante não usar left/transform no mobile */
+  }
+
+  /* Subtítulo das seções */
+  .section-subtitle {
+    padding: 0 16px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc(100% - 32px);
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-size: 1rem;
+  }
+
+  /* Menu mobile: não truncar e manter legível */
+  .nav-menu {
+    width: 100%;
+    padding: 1.25rem 1rem;
+    overflow-x: visible;                /* evita corte lateral */
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-menu .nav-link {
+    display: block;
+    padding: 0.9rem 0.5rem;
+    font-size: 1rem;                    /* leve redução para caber com elegância */
+    line-height: 1.35;
+    white-space: normal;                /* permite quebrar em 2 linhas se preciso */
+    overflow: visible;
+    text-overflow: clip;                /* garante que não use reticências */
+    word-break: keep-all;               /* evita quebrar palavras no meio (PT-BR) */
+  }
+
     .badges-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
@@ -681,6 +745,15 @@ section {
     .badge-icon {
         font-size: 2rem;
     }
+}
+
+@media (max-width: 420px) {
+  .section-title {
+    font-size: clamp(1.5rem, 7.5vw, 1.9rem);
+  }
+  .nav-menu .nav-link {
+    font-size: 0.98rem;
+  }
 }
 
 @media (max-width: 480px) {
